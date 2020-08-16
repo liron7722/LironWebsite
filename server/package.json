@@ -1,0 +1,23 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "description": "Liron Revah main website server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liron7722/LironWebsite.git"
+  },
+  "keywords": [
+    "Liron",
+    "Revah"
+  ],
+  "author": "Liron Revah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liron7722/LironWebsite/issues"
+  },
+  "homepage": "https://github.com/liron7722/LironWebsite#readme"
+}
