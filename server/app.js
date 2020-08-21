@@ -1,14 +1,17 @@
-const hostname = '127.0.0.1';
+const serverType = 'Development';
+const local_IP = '127.0.0.1';
 const port = 3000;
 
+var publicIp = require('public-ip');
+var ip = require("ip");
 var fs = require('fs');
 var express = require('express');
 var app = express();
 
-app.use('/home', (req, res) => {
+app.use('/', (req, res) => {
  
   //res.status(200).type('html');
-  fs.readFile('home.html', function(error, data) {
+  fs.readFile('../templates/home.html', function(error, data) {
     if (error) {
 	res.writeHead(404);
 	res.write('Error: File Not Found');
@@ -46,5 +49,10 @@ app.use(/*default*/ (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+  console.log(`Server type is: ${serverType}`);
+  console.log(`Server internal ip address ${ip.address()}`);
+  console.log(`Server local address is http://${local_IP}:${port}`);
+  (async () => {
+    console.log(`Server public address is http://${await publicIp.v4()}:${port}`);
+  })();
 });
