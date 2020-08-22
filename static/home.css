@@ -7,14 +7,15 @@ header,
     height: 100%;
 }
 
-@media (max-width: 740px) {
+#intro-section {
+    background-image: url('../media/wallpaper.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
 
-    html,
-    body,
-    header,
-    #intro-section {
-        height: 100vh;
-    }
+#carousel-buttons{
+    align-content: center;
 }
 
 .top-nav-collapse,
@@ -32,14 +33,16 @@ header,
     }
 }
 
+/*
 .rgba-gradient {
     background: rgba(35, 7, 77, 0.6);
-    /* fallback for old browsers */
+    // fallback for old browsers
     background: -webkit-linear-gradient(to right, rgba(204, 83, 51, 0.6), rgba(35, 7, 77, 0.6));
-    /* Chrome 10-25, Safari 5.1-6 */
+    // Chrome 10-25, Safari 5.1-6 //
     background: linear-gradient(to right, rgba(204, 83, 51, 0.6), rgba(35, 7, 77, 0.6));
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    // W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ //
 }
+*/
 
 
 .img-gradient:after {
