@@ -1,22 +1,23 @@
-from os import environ, sep
+# -*- coding: utf-8 -*-
 import smtplib
 import requests
-from .path import getPath
-from .logger import Logger
+from os import environ, sep
+from py.util.path import getPath
+from py.util.logger import Logger
 
 timeout = 5
-localHost = '127.0.0.1'
-websiteName = "lironrevah.tech"
+url = "http://localhost"
+websiteName = 'http://lironrevah.tech'
 psw = environ.get('EMAIL_PASS')
 receiverEmail = environ.get('EMAIL')
 senderEmail = environ.get('SUPPORT_EMAIL')
 port = environ.get('NODE_PORT')
 serverType = environ.get('NODE_ENV')
-logsPath = getPath(N=2) + f'logs{sep}'
+logsPath = getPath(N=0) + f'logs{sep}'
 logger = Logger('monitor.log', logsPath).getLogger()
 
 
-def sendEmail(local="Down", domain="Down"):
+def sendEmail(code):
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:  # start a connection with mail
         smtp.ehlo()  # identify my self
         smtp.starttls()  # secure connection
@@ -26,8 +27,7 @@ def sendEmail(local="Down", domain="Down"):
 
         subject = f"{websiteName} website is Down!"  # email subject
         body = 'This is the server status:\n' \
-               f'\tLocal check: {local}\n' \
-               f'\tDomain check: {domain}\n\n'\
+               f'\tStatus code: {code}\n\n' \
                'Make sure the server restarted and it is back up'  # email body message
         msg = f'Subject: {subject}\n\n{body}'  # email message format
 
@@ -35,15 +35,14 @@ def sendEmail(local="Down", domain="Down"):
 
 
 try:
-    rLocal = requests.get(f"{localHost}:{port}", timeout=timeout)
-    rDomain = requests.get(websiteName, timeout=timeout)
-    if rLocal.status_code != 200:  # check for bad local connection
-        sendEmail()
-    elif rDomain.status_code != 200:  # check for bad domain connection
-        sendEmail(local="UP")
-except requests.ConnectionError as e:
-    message = "Got ConnectionError while trying to monitor website"
-    logger.e(message)
+    r = requests.get(f"{url}:{port}", timeout=timeout)
+    if r.status_code != 200:  # check for bad local connection
+        sendEmail(r.status_code)
+    else:
+        logger.info("Check went ok")
 except requests.Timeout as e:
     message = "Got Timeout while trying to monitor website"
-    logger.e(message)
+    logger.error(message, e)
+except requests.ConnectionError as e:
+    message = "Got ConnectionError while trying to monitor website"
+    logger.error(message, e)
