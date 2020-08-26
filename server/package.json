@@ -6,10 +6,12 @@
   "dependencies": {
     "3": "^2.1.0",
     "-": "0.0.1",
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.5.2",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
+    "nodemailer": "^6.4.11",
     "popper.js": "^1.16.1",
     "public-ip": "^4.0.2"
   },

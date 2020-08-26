@@ -9,11 +9,13 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const path = require('path');
+const mailer = require('./sendEmail');
 const express = require('express');
 const publicIp = require('public-ip');
-
 const filesPath = path.resolve(__dirname, '..');
+const bodyParser = require('body-parser');
 
+var projects = fs.readFileSync(filesPath + path.sep + 'templates' + path.sep + 'data.json', 'utf8');
 /*
 let privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
 let certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
@@ -21,13 +23,26 @@ let credentials = {key: privateKey, cert: certificate};
 */
 const app = express();
 
-
 app.set("view engine", "ejs");
 app.set('views', filesPath + path.sep + 'templates');  // ejs files path
 app.use(express.static(filesPath));  // main files path
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+app.use('/contact', (req, res) => {
+  var name = req.body.name;
+  var sender = req.body.email;
+  var subject = req.body.subject;
+  var msg = req.body.message;
+  console.log(name.toString());
+  console.log(typeof name);
+  console.log(name + '\n' + sender + '\n' + subject + '\n' + msg);
+  mailer.sendEmail(name, sender, subject, msg);
+  res.redirect(301, '/');
+});
 
 app.use('/', (req, res) => {
-  res.render("home");
+  res.render("home", {projects:JSON.parse(projects)});
 });
 
 app.use(/*default*/ (req, res) => {
