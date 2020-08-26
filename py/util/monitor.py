@@ -17,7 +17,7 @@ logsPath = getPath(N=0) + f'logs{sep}'
 logger = Logger('monitor.log', logsPath).getLogger()
 
 
-def sendEmail(code):
+def sendEmail(code, log):
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:  # start a connection with mail
         smtp.ehlo()  # identify my self
         smtp.starttls()  # secure connection
@@ -32,17 +32,20 @@ def sendEmail(code):
         msg = f'Subject: {subject}\n\n{body}'  # email message format
 
         smtp.sendmail(senderEmail, receiverEmail, msg)
+        log.info(f'Email send to {receiverEmail}')
 
 
 try:
     r = requests.get(f"{url}:{port}", timeout=timeout)
     if r.status_code != 200:  # check for bad local connection
-        sendEmail(r.status_code)
+        sendEmail(r.status_code, logger)
     else:
         logger.info("Check went ok")
 except requests.Timeout as e:
+    sendEmail('5**', logger)
     message = "Got Timeout while trying to monitor website"
     logger.error(message, e)
 except requests.ConnectionError as e:
+    sendEmail('5**', logger)
     message = "Got ConnectionError while trying to monitor website"
     logger.error(message, e)
