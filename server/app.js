@@ -9,23 +9,23 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const path = require('path');
-const mailer = require('./sendEmail');
+const mailer = require('./liron_modules/m_email');
 const express = require('express');
 const publicIp = require('public-ip');
-const filesPath = path.resolve(__dirname, '..');
+const projectPath = path.resolve(__dirname, '..');
 const bodyParser = require('body-parser');
 
-var projects = fs.readFileSync(filesPath + path.sep + 'templates' + path.sep + 'data.json', 'utf8');
+var projects = fs.readFileSync('./website/templates/data.json', 'utf8');
 /*
-let privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
-let certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+let privateKey  = fs.readFileSync('cert/server.key');
+let certificate = fs.readFileSync('cert/server.crt');
 let credentials = {key: privateKey, cert: certificate};
 */
 const app = express();
 
 app.set("view engine", "ejs");
-app.set('views', filesPath + path.sep + 'templates');  // ejs files path
-app.use(express.static(filesPath));  // main files path
+app.set('views', './website/templates');  // ejs files path
+app.use(express.static(projectPath));  // main files path
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
