@@ -10,7 +10,7 @@ Upcoming:
 	- ELK  
 	- node js logs  
 	- DB (MongoDB + PostgreSQL)  
-	- tell more about my experience  
+	- requirements files for py venv and node modules
 
 
 Updates:  
@@ -18,6 +18,8 @@ Updates:
 update 3#:  
     - Changing all html files into ejs and separate the code  
     - Rearrange project structure and rename files and folders   
+    - tell more about my experience  
+    - small improvements  
 
 update 2#:  
 	- fixed size for projects images  
