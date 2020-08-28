@@ -8,25 +8,25 @@
         <p class="grey-text w-responsive mx-auto mb-5">Projects I am currently working on.</p>
         <!-- Grid row -->
         <div class="row text-center">
-            <% for(var i = 0; i < upcoming.length; i++) {%>
+            <% upcoming.forEach((project) => {%>
                 <!-- Grid column -->
                 <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
                     <!--Featured image-->
                     <div class="view overlay rounded z-depth-1">
-                        <img src=<%= upcoming[i].img %> class="img-fluid" alt="Sample project image">
+                        <img src=<%= project.img %> class="img-fluid" alt="Sample project image">
                         <a>
                             <div class="mask rgba-white-slight waves-effect waves-light"></div>
                         </a>
                     </div>
                     <!--Excerpt-->
                     <div class="card-body pb-0">
-                        <h4 class="font-weight-bold my-3"><%= upcoming[i].name %></h4>
-                        <p class="grey-text"><%= upcoming[i].description %></p>
+                        <h4 class="font-weight-bold my-3"><%= project.name %></h4>
+                        <p class="grey-text"><%= project.description %></p>
                         <a class="btn btn-purple btn-sm waves-effect waves-light"><i class="fa fa-clone left"></i> Coming soon...</a>
                     </div>
                 </div>
                 <!-- Grid column -->
-            <% } %>
+            <% }); %>
         </div>
         <!-- Grid row -->
     </div>

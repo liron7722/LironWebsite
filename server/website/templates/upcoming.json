@@ -1,0 +1,17 @@
+[
+  {
+    "img": "https://miro.medium.com/max/2950/1*WZ5Oln_Hoct_1cal5H1QnA.png",
+    "name": "ML Predicting Sports Result",
+    "description": "Creating variety of Machine Learning algorithms to predict all kind of\nresults in major sports like football, basketball, soccer and more"
+  },
+  {
+    "img": "https://www.kumulos.com/wp-content/uploads/2016/05/21954543_l.jpg",
+    "name": "Website and Mobile App for ML project",
+    "description": "I always loved to share my knowledge and information with others.\nSo I want to make sure everyone can see the results of my projects."
+  },
+  {
+    "img": "https://miro.medium.com/max/730/1*RKNwkQTRa85KcqN1ux_x3g.png",
+    "name": "Building Flutter\\Dart App for random company",
+    "description": "There are a lot of companies out there without website or app.\nLet's make them a good one."
+  }
+]
