@@ -15,7 +15,8 @@ module.exports = {
             to: process.env.EMAIL,
             subject: subject,
             text: `This email send using site contact option\n` +
-                `Name: ${senderName}, with the email: ${senderEmail}\n` +
+                `Contact Name: ${senderName}\n` +
+                 `Contact Email: ${senderEmail}\n` +
                 'With the fallowing message:\n\n' +
                 msg
         };
