@@ -1,7 +1,7 @@
 // environment variables
 const local_IP = 'localhost';
-const port = process.env.NODE_PORT;
-const serverType = process.env.NODE_ENV;
+//const port = process.env.NODE_PORT;
+//const serverType = process.env.NODE_ENV;
 
 // require
 const ip = require("ip");
@@ -9,11 +9,15 @@ const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const https = require('https');
+const config = require('./liron_modules/m_config');
 const mailer = require('./liron_modules/m_email');
 const express = require('express');
 const publicIp = require('public-ip');
 const projectPath = path.resolve(__dirname, '..');
 const bodyParser = require('body-parser');
+
+const port = config.get_node_port();
+const serverType = config.get_node_env();
 
 // db data
 var projects = fs.readFileSync('./website/templates/projects.json', 'utf8');
