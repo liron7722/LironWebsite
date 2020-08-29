@@ -1,3 +1,6 @@
+# config
+m_config.js
+
 # cert
 *.crt
 *.key
