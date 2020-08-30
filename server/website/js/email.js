@@ -3,7 +3,6 @@ function validateContactForm() {
     let email = $('#contact-email').val();
     let subject = $('#contact-Subject').val();
     let msg = $('#contact-message').val();
-    toastr.success(email+subject+msg);
 
     if (email.length === 0) {
         toastr.warning('Empty email. Please fill it.');

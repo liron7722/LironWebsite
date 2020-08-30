@@ -25,7 +25,7 @@
         <div class="row">
             <!-- Grid column -->
             <div class="col-md-9 mb-md-0 mb-5">
-                <form  action="/contact" method="post" id="contact" onsubmit="reset();">
+                <form action="/contact" method="post" id="contact">
                     <!-- Grid row -->
                     <div class="row">
                         <!-- Grid column -->
@@ -71,12 +71,11 @@
                     </div>
                     <!-- Grid row -->
                     <div class="text-center text-md-left">
-                        <button  class="btn btn-purple btn-md waves-effect waves-light" type="submit"
-                                 onclick="validateContactForm();">Send</button>
+                        <input class="btn btn-purple btn-md waves-effect waves-light" type="submit"
+                                 onclick="validateContactForm();" value="SEND">
                     </div>
                 </form>
             </div>
-            <!-- Grid column -->
             <!-- Grid column -->
             <div class="col-md-3 text-center">
                 <ul class="list-unstyled mb-0">
@@ -84,12 +83,6 @@
                         <i class="fa fa-map-marker fa-2x purple-text"></i>
                         <p>Holon, Israel</p>
                     </li>
-                    <!--
-                    <li>
-                        <i class="fa fa-phone fa-2x mt-4 purple-text"></i>
-                        <p>+ 972 54 6566 728</p>
-                    </li>
-                    -->
                     <li>
                         <i class="fa fa-envelope fa-2x mt-4 purple-text"></i>
                         <p class="mb-0">liron.revah.contact@gmail.com</p>

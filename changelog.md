@@ -1,12 +1,13 @@
-### Known Bugs:  
-	- Contact option send email without the user input  
-	- Site monitor don't start automatically  
+### Known Bugs:    
+	- Site monitor don't start automatically 
+	- TODO toast after contact email was sent 
 
 ###Upcoming:  
 	- Https  
 	- Website Voice assistant  
 	- Hebrew support  
 	- ELK  
+	- 404 page
 	- node js logger  
 	- DB (MongoDB + PostgreSQL)  <-- Currently working on
 	- requirements files for py venv and node modules  <-- Currently working on
@@ -15,8 +16,8 @@
 ### Updates:   
 
 #### update 4#:
-	- Auto restart after crash  
-
+	- Fix: Auto restart after crash  
+	- Fix: Contact option send email without the user input
 
 #### update 3#:  
     - Changing all html files into ejs and separate the code  
