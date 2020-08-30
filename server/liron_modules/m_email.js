@@ -6,14 +6,14 @@ module.exports = {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.config.get_support_email(),
-                pass: process.config.get_email_pass()
+                user: config.get_support_email(),
+                pass: config.get_email_pass()
             }
         });
 
         let mailOptions = {
-            from: process.config.get_support_email(),
-            to: process.config.get_email(),
+            from: config.get_support_email(),
+            to: config.get_email(),
             subject: subject,
             text: `This email send using site contact option\n` +
                 `Contact Name: ${senderName}\n` +
