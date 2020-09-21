@@ -1,55 +1,62 @@
 # -*- coding: utf-8 -*-
-import smtplib
 import requests
 from os import environ, sep
 from py.util.path import getPath
 from py.util.logger import Logger
 from py.util.time import callSleep
+from py.util.mailer import sendEmail
 
-timeout = 5
-url = "http://localhost"
-websiteName = 'http://lironrevah.tech'
+TIMEOUT = 5
+url = "https://localhost"
+websiteName = 'https://lironrevah.tech'
 port = environ.get('NODE_PORT')
 serverType = environ.get('NODE_ENV')
-psw = environ.get('EMAIL_PASS')
-receiverEmail = environ.get('EMAIL')
-senderEmail = environ.get('SUPPORT_EMAIL')
-logsPath = getPath(N=0) + f'logs{sep}'
+logsPath = getPath(N=1) + f'logs{sep}'
 logger = Logger('monitor.log', logsPath).getLogger()
 
 
-def sendEmail(code, log):
-    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:  # start a connection with mail
-        smtp.ehlo()  # identify my self
-        smtp.starttls()  # secure connection
-        smtp.ehlo()  # re identify my self after secure connection
-
-        smtp.login(senderEmail, psw)  # email login
-
-        subject = f"{websiteName} website is Down!"  # email subject
-        body = 'This is the server status:\n' \
-               f'\tStatus code: {code}\n\n' \
-               'Make sure the server restarted and it is back up'  # email body message
-        msg = f'Subject: {subject}\n\n{body}'  # email message format
-
-        smtp.sendmail(senderEmail, receiverEmail, msg)
-        log.info(f'Email send to {receiverEmail}')
+def setMessage(code, logMsg=None, status='Down'):
+    extra = f'Message: {logMsg}\n\n' if logMsg is not None else ''
+    subject = f"{websiteName} website is {status}!"  # email subject
+    body = f'Server type: {serverType}\n'\
+           f'Status code: {code}\n{extra}'  # email body message
+    msg = f'Subject: {subject}\n\n{body}'  # email message format
+    return msg
 
 
-while True:
+def setErrorMessage(code, logMsg):
+    msg = setMessage(code, logMsg)
+    sendEmail(msg, logger)
+    return True
+
+
+def checkWebsite(CF):
+    r = {'status_code': 500}
     try:
-        r = requests.get(f"{url}:{port}", timeout=timeout)
-        if r.status_code != 200:  # check for bad local connection
-            sendEmail(r.status_code, logger)
+        r = requests.get(f"{url}:{port}", timeout=TIMEOUT)
+        if 200 <= r.status_code < 400:  # check for bad local connection
+            CF = setErrorMessage(r.status_code, setMessage(r.status_code))
         else:
             logger.info("Check went ok")
-    except requests.Timeout as e:
-        sendEmail('5**', logger)
-        message = "Got Timeout while trying to monitor website"
-        logger.error(message, e)
-    except requests.ConnectionError as e:
-        sendEmail('5**', logger)
-        message = "Got ConnectionError while trying to monitor website"
-        logger.error(message, e)
+            if CF:
+                sendEmail(setMessage(200, logMsg=None, status='UP'), logger)  # startup message
+                CF = False
+    except requests.Timeout as _:
+        logMsg = f"Got Timeout while trying to monitor {websiteName}\n\n" \
+                 "Make sure the server restarted and it is back up"
+        CF = setErrorMessage(r.status_code, logMsg)
+    except requests.ConnectionError as _:
+        logMsg = f"Got ConnectionError while trying to monitor {websiteName}\n\n" \
+                 "Make sure the server restarted and it is back up"
+        CF = setErrorMessage(r.status_code, logMsg)
     finally:
-        callSleep(logger, hours=1)
+        callSleep(logger, minutes=30) if CF else callSleep(logger, hours=1)
+        return CF
+
+
+if __name__ == '__main__':
+    sendEmail(setMessage('***', logMsg='Check in few seconds', status='Booting Up'), logger)  # startup message
+    callSleep(logger, minutes=1)
+    CrashFlag = True
+    while True:
+        CrashFlag = checkWebsite(CrashFlag)
