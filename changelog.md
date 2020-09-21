@@ -3,7 +3,6 @@
 	- TODO toast after contact email was sent 
 
 ###Upcoming:  
-	- Https  
 	- Website Voice assistant  
 	- Hebrew support  
 	- ELK  
@@ -14,6 +13,11 @@
 
 
 ### Updates:   
+
+#### update 5#:
+    - Added nginx
+	- Added HTTPS
+	- Moved to aws
 
 #### update 4#:
 	- Fix: Auto restart after crash  

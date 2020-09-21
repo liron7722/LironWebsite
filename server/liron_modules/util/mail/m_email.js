@@ -1,19 +1,21 @@
 const nodemailer = require('nodemailer');
-const config = require('./m_config');
 
 module.exports = {
     sendEmail: (senderName, senderEmail, subject, msg) => {
+        let email = process.env.EMAIL;
+        let supportEmail = process.env.SUPPORT_EMAIL;
+        let psw = process.env.EMAIL_PASS;
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: config.get_support_email(),
-                pass: config.get_email_pass()
+                user: supportEmail,
+                pass: psw
             }
         });
 
         let mailOptions = {
-            from: config.get_support_email(),
-            to: config.get_email(),
+            from: supportEmail,
+            to: email,
             subject: subject,
             text: `This email send using site contact option\n` +
                 `Contact Name: ${senderName}\n` +
