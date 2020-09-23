@@ -1,5 +1,6 @@
-# config
-m_config.js
+# venv
+django_venv
+flask_venv
 
 # cert
 *.crt
