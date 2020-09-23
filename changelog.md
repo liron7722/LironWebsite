@@ -8,11 +8,17 @@
 	- ELK  
 	- 404 page
 	- node js logger  
-	- DB (MongoDB + PostgreSQL)  <-- Currently working on
-	- requirements files for py venv and node modules  <-- Currently working on
+	- DB (MongoDB + PostgreSQL)
+	- Django
+	- Flask
+	- User register \ login
 
 
 ### Updates:   
+#### update 6#:
+    - requirements file + node_modules clean up
+	- files stracture
+	- django
 
 #### update 5#:
     - Added nginx
