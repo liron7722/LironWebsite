@@ -11,7 +11,7 @@ url = "https://localhost"
 websiteName = 'https://lironrevah.tech'
 port = environ.get('NODE_PORT')
 serverType = environ.get('NODE_ENV')
-logsPath = getPath(N=1) + f'logs{sep}'
+logsPath = getPath(N=0) + f'logs{sep}'
 logger = Logger('monitor.log', logsPath).getLogger()
 
 
@@ -54,9 +54,13 @@ def checkWebsite(CF):
         return CF
 
 
-if __name__ == '__main__':
+def run():
     sendEmail(setMessage('***', logMsg='Check in few seconds', status='Booting Up'), logger)  # startup message
     callSleep(logger, minutes=1)
     CrashFlag = True
     while True:
         CrashFlag = checkWebsite(CrashFlag)
+
+
+if __name__ == '__main__':
+    run()

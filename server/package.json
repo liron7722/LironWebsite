@@ -1,35 +1,27 @@
 {
-  "name": "liron_website_development",
+  "name": "lironwebsite",
   "version": "1.0.0",
-  "description": "development environment",
+  "description": "",
   "main": "app.js",
   "dependencies": {
-    "3": "^2.1.0",
-    "-": "0.0.1",
     "body-parser": "^1.19.0",
-    "bootstrap": "^4.5.2",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
-    "jquery": "^3.5.1",
-    "mongodb": "^3.6.0",
-    "mongoose": "^5.10.2",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
     "nodemailer": "^6.4.11",
-    "pg": "^8.3.3",
-    "popper.js": "^1.16.1",
+    "path": "^0.12.7",
     "public-ip": "^4.0.2"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.3"
-  },
+  "devDependencies": {},
   "scripts": {
-    "start": "nodemon -e js,ejs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/liron7722/LironWebsite.git"
   },
-  "author": "Liron Revah",
+  "author": "Liron revah",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/liron7722/LironWebsite/issues"
