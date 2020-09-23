@@ -54,9 +54,13 @@ def checkWebsite(CF):
         return CF
 
 
-if __name__ == '__main__':
+def run():
     sendEmail(setMessage('***', logMsg='Check in few seconds', status='Booting Up'), logger)  # startup message
     callSleep(logger, minutes=1)
     CrashFlag = True
     while True:
         CrashFlag = checkWebsite(CrashFlag)
+
+
+if __name__ == '__main__':
+    run()
