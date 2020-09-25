@@ -1,24 +1,24 @@
 [
   {
-    "img": "https://i.imgur.com/LwW28cv.png",
+    "img": "../media/wallpaper.webp",
     "title": "LironRevah.tech Website",
     "description": "This website created by me, it work on raspberryPie with NodeJS, HTML, CSS, JS, jQuery, ejs, python and more to come in the future.\nCome check the code if you like what you see.",
     "link":"https://github.com/liron7722/LironWebsite"
   },
   {
-    "img": "https://static.techspot.com/images2/news/bigimage/2019/06/2019-06-17-image-8.jpg",
+    "img": "../media/va.webp",
     "title": "Games Voice Assistant",
     "description": "Game voice assistant that can help the players play a game without hands\nusing voice only. Focus on helping people with disabilities. working with google TTS and STT, DialogFlow and Selenium in python.",
     "link":"https://github.com/liron7722/GamesVoiceAssistant"
   },
   {
-    "img": "https://i.ndtvimg.com/i/2016-06/court-generic_650x400_71465821031.jpg",
+    "img": "../media/court.jpg",
     "title": "Accessible Court Data",
     "description": "Making the data more accessible and easier to visualize to get sense of the data.\nUsing scraping, parsing and ELK with hebrew morphology to get the best results.",
     "link":"https://github.com/liron7722/AccessibleCourtData"
   },
   {
-    "img": "https://www.one-resource.com/wp-content/uploads/2016/07/How-to-manage-your-expenses.png",
+    "img": "../media/expensesApp.png",
     "title": "Cost Manager Android App",
     "description": "Manage your transaction better, visualize incomes vs expenses.\nHybrid app using MVVM design pattern with Java and jQueryMobile.",
     "link":"https://github.com/liron7722/CostManager"
