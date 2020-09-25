@@ -38,7 +38,8 @@ var errorHandling = () => {
 const app = express();
 app.set("view engine", "ejs");  // set view to ejs files
 app.set('views', projectPath + '/website/templates');  // set ejs files path
-app.use(express.static(projectPath));  // add project path
+app.use(express.static(projectPath + ''));  // add project path
+app.use(express.static(projectPath + '/website'));  // add project path
 app.use(bodyParser.urlencoded({ extended: true }));  // form method post body parser
 app.use(logger); // add logger
 
