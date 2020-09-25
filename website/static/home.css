@@ -1,6 +1,6 @@
 /* Required for full background image */
 #intro-section {
-    background-image: url('../media/wallpaper.png');
+    background-image: url('../media/wallpaper.webp');
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
