@@ -18,7 +18,8 @@
 #### update 6#:
     - requirements file + node_modules clean up
 	- files stracture
-	- django
+	- django - init
+	- Improve site grade - image sizes, load times, removing unused js
 
 #### update 5#:
     - Added nginx
