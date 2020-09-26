@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-
+/*
 @media all and (orientation:portrait) {
     html,
     body,
@@ -15,8 +15,8 @@
     #intro-section {
         background-size: 100% 50%;
     }
-}
-@media all and (orientation:landscape) {
+}*/
+@media all /*and (orientation:landscape)*/ {
     html,
     body,
     header,
