@@ -14,8 +14,9 @@ const PORT = process.env.NODE_PORT;
 const SERVER_ENV = process.env.NODE_ENV;
 
 // db data
-var projects = fs.readFileSync(projectPath + '/website/templates/projects.json', 'utf8');
-var upcoming = fs.readFileSync(projectPath + '/website/templates/upcoming.json', 'utf8');
+var projects = fs.readFileSync(projectPath + '/website/templates/projects/projects.json', 'utf8');
+var upcoming = fs.readFileSync(projectPath + '/website/templates/projects/upcoming.json', 'utf8');
+var cards = fs.readFileSync(projectPath + '/website/templates/home/cards.json', 'utf8');
 
 
 var logger = (req, res ,next) => {
@@ -49,11 +50,31 @@ app.use('/contact', (req, res) => {
   res.redirect(301, '/');
 });
 
-app.use('/', (req, res) => {
-  res.render("home", {
+app.use('/about', (req, res) => {
+  res.render("about", {
+    name:'About Me'
+  });
+});
+
+app.use('/projects/soccer-api', (req, res) => {
+  res.render("projects/soccer-api", {
+    name:'Soccer API',
+  });
+});
+
+app.use('/projects', (req, res) => {
+  res.render("projects", {
+    name:'Projects',
     // adding db data
     projects:JSON.parse(projects),
     upcoming:JSON.parse(upcoming)
+  });
+});
+
+app.use('/', (req, res) => {
+  res.render("home", {
+    name:'Home',
+    cards:JSON.parse(cards)
   });
 });
 
