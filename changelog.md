@@ -14,7 +14,13 @@
 	- User register \ login
 
 
-### Updates:   
+### Updates:  
+#### update 7#:
+    - changed file structure in templates folder
+    - split css file
+    - added new home page, about me page, projects page
+    - added project soccer api documentation page
+ 
 #### update 6#:
     - requirements file + node_modules clean up
 	- files stracture

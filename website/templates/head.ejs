@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liron Revah - <%= name %></title>
+    <%if (name == 'Home' || name == 'About Me') { %>
+    <meta name="keywords"
+          content="HTML, CSS, JavaScript, ejs, python, Machine learning, freelance programmer, Liron Revah "/>
+    <meta name="description"
+          content="Portfolio website of Liron Revah, Full Stack programmer, WEB Developer, ML Developer.
+          Future and Past Projects.">
+    <% } else if (name == 'Soccer API') {%>
+        <meta name="keywords"
+              content="API, Soccer, python, flask, football, Liron Revah, documentation"/>
+        <meta name="description"
+              content="Soccer API documentation page, Getting started with soccer-api.">
+    <% } %>
+    <meta name="author" content="Liron Revah">
+    <link rel="icon" href="../media/icon2.png" sizes="any" type="image/png">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.11.0/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
+    <link rel="stylesheet" type="text/css" href="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.1/css/mdb.min.css">
+    <link rel="stylesheet" type="text/css" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-addons-4.19.1.min.css">
+    <link rel="stylesheet" type="text/css" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/mdb-plugins-gathered.min.css">
+    <link rel="stylesheet" href="/website/static/main.css">
+    <%if (name != 'Soccer API') { %>
+        <link rel="stylesheet" href="/website/static/intro.css">
+    <% } else { %>
+        <link rel="stylesheet" href="/website/static/soccer-api.css">
+    <% } %>
+    <%if (name == 'Home') { %>
+    <link rel="stylesheet" href="/website/static/home.css">
+    <% } %>
+</head>
