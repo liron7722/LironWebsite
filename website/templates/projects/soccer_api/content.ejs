@@ -1,0 +1,123 @@
+<!--Section: projects-->
+<section id="projects" class="text-center py-5 wow fadeIn">
+    <!-- Container -->
+    <div class="container">
+        <!-- Section heading -->
+        <h2 class="h1-responsive font-weight-bold mb-5">Soccer API</h2>
+        <!-- Section description -->
+        <p class="grey-text w-responsive mx-auto mb-5">This API contain all kind of data, from fixture stats,
+            player stats, team stats in many leagues and many seasons.</p>
+    </div>
+    <!-- Container -->
+</section>
+<!--Main layout-->
+<main class="container-xl px-3 px-md-6 my-4 my-lg-4 d-xl-flex" >
+    <article class="markdown-body width-full">
+    <div class="mt-2 article-grid-container">
+    <!--Section: projects-->
+    <div class="d-lg-flex flex-justify-between">
+    <div id="article-contents" class="article-grid-body">
+        <!--Section: getting_started-->
+        <section id="getting_started">
+            <h5>Getting started with simple curl</h5>
+            <pre>
+                <code>
+                    $ curl http://soccer-api.club/
+
+                    >{
+                    >   "documentation": "https://www.lironrevah.tech/projects/soccer-api",
+                    >   "msg": "Welcome to Soccer API"
+                    >}
+                </code>
+            </pre>
+            <h5>Getting Competition list</h5>
+            <pre>
+                <code>
+                    $ curl http://soccer-api.club/competitions
+
+                    >[
+                    >  "A-League",
+                    >  "Austrian-Bundesliga",
+                    >  "Belgian-First-Division-A",
+                    >  "Big-5-European-Leagues",
+                    >  "Bulgarian-First-League",
+                    >  "Bundesliga",
+                    >  "Canadian-Premier-League",
+                    >  "La-Liga",
+                    >  "Ligue-1",
+                    >  "Major-League-Soccer",
+                    >  "Premier-League",
+                    >  "Primera-A",
+                    >  "Primera-Division",
+                    >  "Serie-A",
+                    >  "Super-League",
+                    >  "Superliga-Argentina"
+                    >]
+                </code>
+            </pre>
+            <h5>Getting Season list</h5>
+            <p>Note: Season name without the year is the current season.</p>
+            <pre>
+                <code>
+                    Example: http://soccer-api.club/competitions_id
+                    $ curl http://soccer-api.club/Premier-League
+
+                    >[
+                    >  "Premier-League-Stats",
+                    >  "1992-1993",
+                    >  "1993-1994",
+                    >  "1994-1995",
+                    >  "1995-1996",
+                    >  "1996-1997",
+                    >  "1997-1998",
+                    >  "1998-1999",
+                    >  "1999-2000",
+                    >  "2000-2001",
+                    >  "2001-2002",
+                    >  "2002-2003",
+                    >  "2003-2004",
+                    >  "2004-2005",
+                    >  "2005-2006",
+                    >  "2006-2007",
+                    >  "2007-2008",
+                    >  "2008-2009",
+                    >  "2009-2010",
+                    >  "2010-2011",
+                    >  "2011-2012",
+                    >  "2012-2013",
+                    >  "2013-2014",
+                    >  "2014-2015",
+                    >  "2015-2016",
+                    >  "2016-2017",
+                    >  "2017-2018",
+                    >  "2018-2019",
+                    >  "2019-2020"
+                    >]
+                </code>
+            </pre>
+            <h5>Getting season data</h5>
+            <p>Note: data size may vary between 3MB - 50MB, it may take time getting the response.</p>
+            <pre>
+                <code>
+                    Example: curl http://soccer-api.club/competitions_id/season_id
+                    $ curl http://soccer-api.club/Premier-League/1992-1993
+
+                    response keys = ['Name', 'Basic Info', 'Advance Info']
+
+                    Name is equal to the competitions_id.
+                    Basic Info is json string with the next keys ['Season', 'Competition Name', '# Squads', 'Champion', 'Top Scorer']
+                    Advance Info is json with the next keys ['Fixtures', 'Nationalities']
+
+                    Fixtures is a list of jsons of all the fixture happened in that season, with a lot of data inside of them.
+                    Nationalities is a list of json strings of all players nationalities with some names of them.
+                </code>
+            </pre>
+        </section>
+        <!--Section: getting_started-->
+
+    </div>
+    </div>
+    </div>
+    </article>
+</main>
+<!--Main layout-->

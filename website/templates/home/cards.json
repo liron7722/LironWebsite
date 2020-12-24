@@ -1,0 +1,14 @@
+[
+  {
+    "img": "../../media/about_me.png",
+    "title": "About Me",
+    "description": "My bio and contact info.",
+    "link":"/about"
+  },
+  {
+    "img": "../../media/programming.jpg",
+    "title": "Projects",
+    "description": "From development projects to old and future ones. Github and Projects links.",
+    "link":"/projects"
+  }
+]
