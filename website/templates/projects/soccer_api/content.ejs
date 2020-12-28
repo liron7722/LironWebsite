@@ -105,11 +105,13 @@
                     response keys = ['Name', 'Basic Info', 'Advance Info']
 
                     Name is equal to the competitions_id.
-                    Basic Info is json string with the next keys ['Season', 'Competition Name', '# Squads', 'Champion', 'Top Scorer']
+                    Basic Info is json with the next keys ['Season', 'Competition Name', '# Squads', 'Champion', 'Top Scorer']
                     Advance Info is json with the next keys ['Fixtures', 'Nationalities']
 
                     Fixtures is a list of jsons of all the fixture happened in that season, with a lot of data inside of them.
-                    Nationalities is a list of json strings of all players nationalities with some names of them.
+                    ['Score Box', 'Register Teams', 'Events', 'Stats', 'Extra Stats', 'Dict Tables']
+                    Nationalities is a list of jsons of all players nationalities with the next keys:
+                    ['Rk', 'Nation', '# Players', 'Min', 'List']
                 </code>
             </pre>
         </section>
