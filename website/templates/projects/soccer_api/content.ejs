@@ -6,120 +6,1110 @@
         <h2 class="h1-responsive font-weight-bold mb-5">Soccer API</h2>
         <!-- Section description -->
         <p class="grey-text w-responsive mx-auto mb-5">This API contain all kind of data, from fixture stats,
-            player stats, team stats in many leagues and many seasons.</p>
+            player stats, team stats in many leagues and many seasons.<br>Up to date Documentation can be found at
+            <a href="https://www.soccer-api.club/documentation">https://www.soccer-api.club/documentation</a>/.</p>
     </div>
     <!-- Container -->
 </section>
 <!--Main layout-->
 <main class="container-xl px-3 px-md-6 my-4 my-lg-4 d-xl-flex" >
-    <article class="markdown-body width-full">
-    <div class="mt-2 article-grid-container">
-    <!--Section: projects-->
-    <div class="d-lg-flex flex-justify-between">
-    <div id="article-contents" class="article-grid-body">
-        <!--Section: getting_started-->
-        <section id="getting_started">
-            <h5>Getting started with simple curl</h5>
-            <pre>
-                <code>
-                    $ curl http://soccer-api.club/
+    <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-                    >{
-                    >   "documentation": "https://www.lironrevah.tech/projects/soccer-api",
-                    >   "msg": "Welcome to Soccer API"
-                    >}
-                </code>
-            </pre>
-            <h5>Getting Competition list</h5>
-            <pre>
-                <code>
-                    $ curl http://soccer-api.club/competitions
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h1 id="Soccer-API.club-Documentation">Soccer-API.club Documentation<a class="anchor-link" href="#Soccer-API.club-Documentation">&#182;</a></h1>
+        </div>
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Pre-Requirements">Pre Requirements<a class="anchor-link" href="#Pre-Requirements">&#182;</a></h3>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install requests --quiet
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+</pre></div>
 
-                    >[
-                    >  "A-League",
-                    >  "Austrian-Bundesliga",
-                    >  "Belgian-First-Division-A",
-                    >  "Big-5-European-Leagues",
-                    >  "Bulgarian-First-League",
-                    >  "Bundesliga",
-                    >  "Canadian-Premier-League",
-                    >  "La-Liga",
-                    >  "Ligue-1",
-                    >  "Major-League-Soccer",
-                    >  "Premier-League",
-                    >  "Primera-A",
-                    >  "Primera-Division",
-                    >  "Serie-A",
-                    >  "Super-League",
-                    >  "Superliga-Argentina"
-                    >]
-                </code>
-            </pre>
-            <h5>Getting Season list</h5>
-            <p>Note: Season name without the year is the current season.</p>
-            <pre>
-                <code>
-                    Example: http://soccer-api.club/competitions_id
-                    $ curl http://soccer-api.club/Premier-League
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    >[
-                    >  "Premier-League-Stats",
-                    >  "1992-1993",
-                    >  "1993-1994",
-                    >  "1994-1995",
-                    >  "1995-1996",
-                    >  "1996-1997",
-                    >  "1997-1998",
-                    >  "1998-1999",
-                    >  "1999-2000",
-                    >  "2000-2001",
-                    >  "2001-2002",
-                    >  "2002-2003",
-                    >  "2003-2004",
-                    >  "2004-2005",
-                    >  "2005-2006",
-                    >  "2006-2007",
-                    >  "2007-2008",
-                    >  "2008-2009",
-                    >  "2009-2010",
-                    >  "2010-2011",
-                    >  "2011-2012",
-                    >  "2012-2013",
-                    >  "2013-2014",
-                    >  "2014-2015",
-                    >  "2015-2016",
-                    >  "2016-2017",
-                    >  "2017-2018",
-                    >  "2018-2019",
-                    >  "2019-2020"
-                    >]
-                </code>
-            </pre>
-            <h5>Getting season data</h5>
-            <p>Note: data size may vary between 3MB - 50MB, it may take time getting the response.</p>
-            <pre>
-                <code>
-                    Example: curl http://soccer-api.club/competitions_id/season_id
-                    $ curl http://soccer-api.club/Premier-League/1992-1993
+        <div class="jp-Cell-outputWrapper">
 
-                    response keys = ['Name', 'Basic Info', 'Advance Info']
 
-                    Name is equal to the competitions_id.
-                    Basic Info is json with the next keys ['Season', 'Competition Name', '# Squads', 'Champion', 'Top Scorer']
-                    Advance Info is json with the next keys ['Fixtures', 'Nationalities']
+            <div class="jp-OutputArea jp-Cell-outputArea">
 
-                    Fixtures is a list of jsons of all the fixture happened in that season, with a lot of data inside of them.
-                    ['Score Box', 'Register Teams', 'Events', 'Stats', 'Extra Stats', 'Dict Tables']
-                    Nationalities is a list of jsons of all players nationalities with the next keys:
-                    ['Rk', 'Nation', '# Players', 'Min', 'List']
-                </code>
-            </pre>
-        </section>
-        <!--Section: getting_started-->
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre></pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="API-Status-check">API Status check<a class="anchor-link" href="#API-Status-check">&#182;</a></h3>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.soccer-api.club&#39;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Bad Status code: </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;documentation&#39;: &#39;https://www.soccer-api.club/documentation/&#39;,
+ &#39;msg&#39;: &#39;Welcome to Soccer API&#39;}
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Getting-Competition-list">Getting Competition list<a class="anchor-link" href="#Getting-Competition-list">&#182;</a></h3>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">/competitions&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">competitions</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Bad Status code: </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;msg&#39;: &#39;successful&#39;,
+ &#39;result&#39;: [&#39;Bundesliga&#39;, &#39;La-Liga&#39;, &#39;Ligue-1&#39;, &#39;Premier-League&#39;, &#39;Serie-A&#39;]}
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Getting-Season-list">Getting Season list<a class="anchor-link" href="#Getting-Season-list">&#182;</a></h3>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">competitions</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">seasons</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Bad Status code: </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;msg&#39;: &#39;successful&#39;,
+ &#39;result&#39;: [&#39;1992-1993&#39;,
+            &#39;1993-1994&#39;,
+            &#39;1994-1995&#39;,
+            &#39;1995-1996&#39;,
+            &#39;1996-1997&#39;,
+            &#39;1997-1998&#39;,
+            &#39;1998-1999&#39;,
+            &#39;1999-2000&#39;,
+            &#39;2000-2001&#39;,
+            &#39;2001-2002&#39;,
+            &#39;2002-2003&#39;,
+            &#39;2003-2004&#39;,
+            &#39;2004-2005&#39;,
+            &#39;2005-2006&#39;,
+            &#39;2006-2007&#39;,
+            &#39;2007-2008&#39;,
+            &#39;2008-2009&#39;,
+            &#39;2009-2010&#39;,
+            &#39;2010-2011&#39;,
+            &#39;2011-2012&#39;,
+            &#39;2012-2013&#39;,
+            &#39;2013-2014&#39;,
+            &#39;2014-2015&#39;,
+            &#39;2015-2016&#39;,
+            &#39;2016-2017&#39;,
+            &#39;2017-2018&#39;,
+            &#39;2018-2019&#39;,
+            &#39;2019-2020&#39;,
+            &#39;2020-2021&#39;]}
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Getting-All-season-data">Getting All season data<a class="anchor-link" href="#Getting-All-season-data">&#182;</a></h3><h6 id="Note:-This-may-tak-a-few-seconds-depend-on-the-data-size">Note: This may tak a few seconds depend on the data size<a class="anchor-link" href="#Note:-This-may-tak-a-few-seconds-depend-on-the-data-size">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">competitions</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">seasons</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">fixtures</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fixtures</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fixtures</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Bad Status code: </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>380
+dict_keys([&#39;Dict Tables&#39;, &#39;Events&#39;, &#39;Extra Stats&#39;, &#39;Register Teams&#39;, &#39;Score Box&#39;, &#39;Stats&#39;])
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Getting-specific-game-by-teams-name">Getting specific game by teams name<a class="anchor-link" href="#Getting-specific-game-by-teams-name">&#182;</a></h3><h6 id="Note:-you-can-filter-games-by-one-of-the-team-names-or-both-of-them">Note: you can filter games by one of the team names or both of them<a class="anchor-link" href="#Note:-you-can-filter-games-by-one-of-the-team-names-or-both-of-them">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fil</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;home_team&#39;</span><span class="p">:</span> <span class="s1">&#39;Newcastle United&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;away_team&#39;</span><span class="p">:</span> <span class="s1">&#39;Tottenham Hotspur&#39;</span><span class="p">,</span>
+      <span class="p">}</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">competitions</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">seasons</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fil</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">fixtures</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fixtures</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">fixtures</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">home_team</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;Home Team&#39;</span><span class="p">][</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+        <span class="n">away_team</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;Away Team&#39;</span><span class="p">][</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+        <span class="n">dateTime</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;DateTime&#39;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">home_team</span><span class="si">}</span><span class="s1">  Vs.  </span><span class="si">{</span><span class="n">away_team</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dateTime</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">dateTime</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;Venue&#39;</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Bad Status code: </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Newcastle United  Vs.  Tottenham Hotspur
+Wednesday July 15, 2020  18:00 (venue time)
+St. James&#39; Park, Newcastle upon Tyne
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Getting-specific-games-by-date">Getting specific games by date<a class="anchor-link" href="#Getting-specific-games-by-date">&#182;</a></h3><h6 id="Note:-date-must-be-in-iso-format-YYYY-MM-DD">Note: date must be in iso format YYYY-MM-DD<a class="anchor-link" href="#Note:-date-must-be-in-iso-format-YYYY-MM-DD">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fil</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;2020-07-15&#39;</span><span class="p">,</span>
+      <span class="p">}</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">competitions</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">seasons</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fil</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">fixtures</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">fixtures</span><span class="p">:</span>
+        <span class="n">home_team</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;Home Team&#39;</span><span class="p">][</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+        <span class="n">away_team</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;Away Team&#39;</span><span class="p">][</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+        <span class="n">dateTime</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;DateTime&#39;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">home_team</span><span class="si">}</span><span class="s1">  Vs.  </span><span class="si">{</span><span class="n">away_team</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dateTime</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">dateTime</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;Venue&#39;</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Bad Status code: </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Burnley  Vs.  Wolverhampton Wanderers
+Wednesday July 15, 2020  18:00 (venue time)
+Turf Moor, Burnley
+
+Manchester City  Vs.  Bournemouth
+Wednesday July 15, 2020  18:00 (venue time)
+Etihad Stadium, Manchester
+
+Newcastle United  Vs.  Tottenham Hotspur
+Wednesday July 15, 2020  18:00 (venue time)
+St. James&#39; Park, Newcastle upon Tyne
+
+Arsenal  Vs.  Liverpool
+Wednesday July 15, 2020  20:15 (venue time)
+Emirates Stadium, London
+
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Getting-specific-games-by-list-dates">Getting specific games by list dates<a class="anchor-link" href="#Getting-specific-games-by-list-dates">&#182;</a></h3><h6 id="Note:-dates-must-be-in-iso-format-YYYY-MM-DD,-input-need-to-be-as-array-string">Note: dates must be in iso format YYYY-MM-DD, input need to be as array string<a class="anchor-link" href="#Note:-dates-must-be-in-iso-format-YYYY-MM-DD,-input-need-to-be-as-array-string">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fil</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">([</span><span class="s1">&#39;2020-01-12&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-01-22&#39;</span><span class="p">]),</span>   <span class="c1"># create string array of dates</span>
+    <span class="s1">&#39;sort_by_order&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># 1, &#39;ascending&#39; and &#39;asc&#39; for ascending by date, -1, &#39;descending&#39; and &#39;des&#39; for descending by date</span>
+      <span class="p">}</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">competitions</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">seasons</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">fil</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">fixtures</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">fixtures</span><span class="p">:</span>
+        <span class="n">home_team</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;Home Team&#39;</span><span class="p">][</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+        <span class="n">away_team</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;Away Team&#39;</span><span class="p">][</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
+        <span class="n">dateTime</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;DateTime&#39;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">home_team</span><span class="si">}</span><span class="s1">  Vs.  </span><span class="si">{</span><span class="n">away_team</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dateTime</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">dateTime</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">][</span><span class="s1">&#39;Venue&#39;</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Bad Status code: </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Leicester City  Vs.  West Ham United
+Wednesday January 22, 2020  19:30 (venue time)
+King Power Stadium, Leicester
+
+Tottenham Hotspur  Vs.  Norwich City
+Wednesday January 22, 2020  19:30 (venue time)
+Tottenham Hotspur Stadium, London
+
+Manchester United  Vs.  Burnley
+Wednesday January 22, 2020  20:15 (venue time)
+Old Trafford, Manchester
+
+Bournemouth  Vs.  Watford
+Sunday January 12, 2020  14:00 (venue time)
+Vitality Stadium, Bournemouth
+
+Aston Villa  Vs.  Manchester City
+Sunday January 12, 2020  16:30 (venue time)
+Villa Park, Birmingham
+
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Score-Box">Score Box<a class="anchor-link" href="#Score-Box">&#182;</a></h3><h6 id="Note:-contain-all-the-general-information">Note: contain all the general information<a class="anchor-link" href="#Note:-contain-all-the-general-information">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;Score Box&#39;</span><span class="p">])</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;Attendance&#39;: &#39;41,823&#39;,
+ &#39;Away Team&#39;: {&#39;Captain&#39;: &#39;David Silva&#39;,
+               &#39;Events&#39;: [{&#39;Minute&#39;: 18,
+                           &#39;Player&#39;: &#39;Riyad Mahrez&#39;,
+                           &#39;Type&#39;: &#39;goal&#39;},
+                          {&#39;Minute&#39;: 24,
+                           &#39;Player&#39;: &#39;Riyad Mahrez&#39;,
+                           &#39;Type&#39;: &#39;goal&#39;},
+                          {&#39;Minute&#39;: 28,
+                           &#39;Player&#39;: &#39;Sergio Agüero&#39;,
+                           &#39;Type&#39;: &#39;goal&#39;},
+                          {&#39;Minute&#39;: 45,
+                           &#39;Player&#39;: &#39;Gabriel Jesus&#39;,
+                           &#39;Type&#39;: &#39;goal&#39;},
+                          {&#39;Minute&#39;: 57,
+                           &#39;Player&#39;: &#39;Sergio Agüero&#39;,
+                           &#39;Type&#39;: &#39;goal&#39;},
+                          {&#39;Minute&#39;: 81,
+                           &#39;Player&#39;: &#39;Sergio Agüero&#39;,
+                           &#39;Type&#39;: &#39;goal&#39;}],
+               &#39;Goals&#39;: &#39;6&#39;,
+               &#39;Manager&#39;: &#39;Pep Guardiola&#39;,
+               &#39;Name&#39;: &#39;Manchester City&#39;,
+               &#39;W_D_L&#39;: {&#39;Draws&#39;: &#39;2&#39;, &#39;Losses&#39;: &#39;5&#39;, &#39;Wins&#39;: &#39;15&#39;},
+               &#39;score_xg&#39;: &#39;2.5&#39;},
+ &#39;Competition&#39;: &#39;Premier League (Matchweek 22)&#39;,
+ &#39;DateTime&#39;: {&#39;Date&#39;: &#39;Sunday January 12, 2020&#39;, &#39;Time&#39;: &#39;16:30 (venue time)&#39;},
+ &#39;Home Team&#39;: {&#39;Captain&#39;: &#39;Jack Grealish&#39;,
+               &#39;Events&#39;: [{&#39;Minute&#39;: 90,
+                           &#39;Player&#39;: &#39;Anwar El Ghazi&#39;,
+                           &#39;Type&#39;: &#39;penalty_goal&#39;}],
+               &#39;Goals&#39;: &#39;1&#39;,
+               &#39;Manager&#39;: &#39;Dean Smith&#39;,
+               &#39;Name&#39;: &#39;Aston Villa&#39;,
+               &#39;W_D_L&#39;: {&#39;Draws&#39;: &#39;3&#39;, &#39;Losses&#39;: &#39;13&#39;, &#39;Wins&#39;: &#39;6&#39;},
+               &#39;score_xg&#39;: &#39;1.0&#39;},
+ &#39;Officials&#39;: [{&#39;Name&#39;: &#39;Jonathan Moss&#39;, &#39;Position&#39;: &#39;Referee&#39;},
+               {&#39;Name&#39;: &#39;Harry Lennard&#39;, &#39;Position&#39;: &#39;AR1&#39;},
+               {&#39;Name&#39;: &#39;Eddie Smart&#39;, &#39;Position&#39;: &#39;AR2&#39;},
+               {&#39;Name&#39;: &#39;David Coote&#39;, &#39;Position&#39;: &#39;4th&#39;},
+               {&#39;Name&#39;: &#39;Graham Scott&#39;, &#39;Position&#39;: &#39;VAR&#39;}],
+ &#39;Venue&#39;: &#39;Villa Park, Birmingham&#39;}
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Register-Teams">Register Teams<a class="anchor-link" href="#Register-Teams">&#182;</a></h3><h6 id="Note:-contain-Starting-lineups-and-Substitute-list">Note: contain Starting lineups and Substitute list<a class="anchor-link" href="#Note:-contain-Starting-lineups-and-Substitute-list">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;Register Teams&#39;</span><span class="p">][</span><span class="s1">&#39;Home Team&#39;</span><span class="p">])</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;Starting&#39;: [&#39;Ørjan Nyland&#39;,
+              &#39;Neil Taylor&#39;,
+              &#39;Danny Drinkwater&#39;,
+              &#39;Douglas Luiz&#39;,
+              &#39;Jack Grealish&#39;,
+              &#39;Conor Hourihane&#39;,
+              &#39;Ezri Konsa&#39;,
+              &#39;Anwar El Ghazi&#39;,
+              &#39;Ahmed Elmohamady&#39;,
+              &#39;Kortney Hause&#39;,
+              &#39;Tyrone Mings&#39;],
+ &#39;Substitute&#39;: [&#39;Lovre Kalinić&#39;,
+                &#39;James Chester&#39;,
+                &#39;Henri Lansbury&#39;,
+                &#39;Marvelous Nakamba&#39;,
+                &#39;Trézéguet&#39;,
+                &#39;Frederic Guilbert&#39;,
+                &#39;Indiana Vassilev&#39;]}
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Events">Events<a class="anchor-link" href="#Events">&#182;</a></h3><h6 id="Note:-contain-all-the-event-information-like-type,-minute,-player-name-and-which-team-side">Note: contain all the event information like type, minute, player name and which team side<a class="anchor-link" href="#Note:-contain-all-the-event-information-like-type,-minute,-player-name-and-which-team-side">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;Events&#39;</span><span class="p">][</span><span class="s1">&#39;First Half&#39;</span><span class="p">])</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[{&#39;Event&#39;: &#39;goal&#39;,
+  &#39;Minute&#39;: &#39;18&#39;,
+  &#39;Player&#39;: &#39;Riyad Mahrez&#39;,
+  &#39;Scoreboard&#39;: &#39;0:1&#39;,
+  &#39;Side&#39;: &#39;Away&#39;},
+ {&#39;Event&#39;: &#39;goal&#39;,
+  &#39;Minute&#39;: &#39;24&#39;,
+  &#39;Player&#39;: &#39;Riyad Mahrez&#39;,
+  &#39;Scoreboard&#39;: &#39;0:2&#39;,
+  &#39;Side&#39;: &#39;Away&#39;},
+ {&#39;Event&#39;: &#39;goal&#39;,
+  &#39;Minute&#39;: &#39;28&#39;,
+  &#39;Player&#39;: &#39;Sergio Agüero&#39;,
+  &#39;Scoreboard&#39;: &#39;0:3&#39;,
+  &#39;Side&#39;: &#39;Away&#39;},
+ {&#39;Event&#39;: &#39;goal&#39;,
+  &#39;Minute&#39;: {&#39;Added Time&#39;: &#39;1&#39;, &#39;Minute&#39;: &#39;45&#39;},
+  &#39;Player&#39;: &#39;Gabriel Jesus&#39;,
+  &#39;Scoreboard&#39;: &#39;0:4&#39;,
+  &#39;Side&#39;: &#39;Away&#39;}]
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Stats">Stats<a class="anchor-link" href="#Stats">&#182;</a></h3><h6 id="Note:-contain-amount-of-cards-given-in-the-game,-Passing-Accuracy,-Possession,-Saves,-Shots-on-Target">Note: contain amount of cards given in the game, Passing Accuracy, Possession, Saves, Shots on Target<a class="anchor-link" href="#Note:-contain-amount-of-cards-given-in-the-game,-Passing-Accuracy,-Possession,-Saves,-Shots-on-Target">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;Stats&#39;</span><span class="p">][</span><span class="s1">&#39;Away Team&#39;</span><span class="p">])</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;Cards&#39;: {&#39;2nd_Yellow&#39;: 0, &#39;Red&#39;: 0, &#39;Yellow&#39;: 1},
+ &#39;Name&#39;: &#39;Manchester City&#39;,
+ &#39;Passing Accuracy&#39;: {&#39;Percent&#39;: &#39;92&#39;, &#39;Successful&#39;: &#39;808&#39;, &#39;Total&#39;: &#39;883&#39;},
+ &#39;Possession&#39;: &#39;70%&#39;,
+ &#39;Saves&#39;: {&#39;Percent&#39;: 0, &#39;Successful&#39;: 0, &#39;Total&#39;: 0},
+ &#39;Shots on Target&#39;: {&#39;Percent&#39;: &#39;48&#39;, &#39;Successful&#39;: &#39;10&#39;, &#39;Total&#39;: &#39;21&#39;}}
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Extra-Stats">Extra Stats<a class="anchor-link" href="#Extra-Stats">&#182;</a></h3><h6 id="Note:-contain-all-kind-of-stats">Note: contain all kind of stats<a class="anchor-link" href="#Note:-contain-all-kind-of-stats">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="s1">&#39;Extra Stats&#39;</span><span class="p">][</span><span class="s1">&#39;Home Team&#39;</span><span class="p">])</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;Aerials Won&#39;: &#39;8&#39;,
+ &#39;Clearances&#39;: &#39;17&#39;,
+ &#39;Corners&#39;: &#39;2&#39;,
+ &#39;Crosses&#39;: &#39;4&#39;,
+ &#39;Fouls&#39;: &#39;8&#39;,
+ &#39;Goal Kicks&#39;: &#39;12&#39;,
+ &#39;Interceptions&#39;: &#39;10&#39;,
+ &#39;Long Balls&#39;: &#39;51&#39;,
+ &#39;Name&#39;: &#39;Aston Villa&#39;,
+ &#39;Offsides&#39;: &#39;1&#39;,
+ &#39;Tackles&#39;: &#39;23&#39;,
+ &#39;Throw Ins&#39;: &#39;14&#39;,
+ &#39;Touches&#39;: &#39;486&#39;}
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Goalkeeper-stats">Goalkeeper stats<a class="anchor-link" href="#Goalkeeper-stats">&#182;</a></h3><h6 id="Note:-contain-all-kind-of-informations-about-the-player-stats">Note: contain all kind of informations about the player stats<a class="anchor-link" href="#Note:-contain-all-kind-of-informations-about-the-player-stats">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">value_dict</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Dict Tables&#39;</span><span class="p">][</span><span class="s1">&#39;Away Team&#39;</span><span class="p">][</span><span class="s1">&#39;Goalkeeper stats&#39;</span><span class="p">]</span>  <span class="c1"># Per playing Goalkeeper</span>
+<span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">value_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[&#39;Crosses - Opp&#39;,
+ &#39;Crosses - Stp&#39;,
+ &#39;Crosses - Stp%&#39;,
+ &#39;General - Age&#39;,
+ &#39;General - Min&#39;,
+ &#39;General - Nation&#39;,
+ &#39;General - Player&#39;,
+ &#39;Goal Kicks - Att&#39;,
+ &#39;Goal Kicks - AvgLen&#39;,
+ &#39;Goal Kicks - Launch%&#39;,
+ &#39;Launched - Att&#39;,
+ &#39;Launched - Cmp&#39;,
+ &#39;Launched - Cmp%&#39;,
+ &#39;Passes - Att&#39;,
+ &#39;Passes - AvgLen&#39;,
+ &#39;Passes - Launch%&#39;,
+ &#39;Passes - Thr&#39;,
+ &#39;Shot Stopping - GA&#39;,
+ &#39;Shot Stopping - PSxG&#39;,
+ &#39;Shot Stopping - Save%&#39;,
+ &#39;Shot Stopping - Saves&#39;,
+ &#39;Shot Stopping - SoTA&#39;,
+ &#39;Sweeper - #OPA&#39;,
+ &#39;Sweeper - AvgDist&#39;]
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Field-Players-stats">Field Players stats<a class="anchor-link" href="#Field-Players-stats">&#182;</a></h3><h6 id="Note:-contain-all-kind-of-informations-about-the-player-stats">Note: contain all kind of informations about the player stats<a class="anchor-link" href="#Note:-contain-all-kind-of-informations-about-the-player-stats">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">value_dict</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Dict Tables&#39;</span><span class="p">][</span><span class="s1">&#39;Away Team&#39;</span><span class="p">][</span><span class="s1">&#39;Players stats&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">value_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">players_string</span> <span class="o">=</span> <span class="n">value_dict</span><span class="p">[</span><span class="s1">&#39;Players&#39;</span><span class="p">]</span>  <span class="c1"># List of all players</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">players_string</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Get first player</span>
+<span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>dict_keys([&#39;Players&#39;, &#39;Total&#39;])
+
+[&#39;Aerial Duels - Lost&#39;,
+ &#39;Aerial Duels - Won&#39;,
+ &#39;Aerial Duels - Won%&#39;,
+ &#39;Blocks - Blocks&#39;,
+ &#39;Blocks - Pass&#39;,
+ &#39;Blocks - Sh&#39;,
+ &#39;Blocks - ShSv&#39;,
+ &#39;Body Parts - Head&#39;,
+ &#39;Body Parts - Left&#39;,
+ &#39;Body Parts - Other&#39;,
+ &#39;Body Parts - Right&#39;,
+ &#39;Body Parts - TI&#39;,
+ &#39;Carries - 1/3&#39;,
+ &#39;Carries - CPA&#39;,
+ &#39;Carries - Carries&#39;,
+ &#39;Carries - Dis&#39;,
+ &#39;Carries - Mis&#39;,
+ &#39;Carries - PrgDist&#39;,
+ &#39;Carries - Prog&#39;,
+ &#39;Carries - TotDist&#39;,
+ &#39;Corner Kicks - In&#39;,
+ &#39;Corner Kicks - Out&#39;,
+ &#39;Corner Kicks - Str&#39;,
+ &#39;Dribbles - #Pl&#39;,
+ &#39;Dribbles - Att&#39;,
+ &#39;Dribbles - Megs&#39;,
+ &#39;Dribbles - Succ&#39;,
+ &#39;Dribbles - Succ%&#39;,
+ &#39;Expected - npxG&#39;,
+ &#39;Expected - xA&#39;,
+ &#39;Expected - xG&#39;,
+ &#39;General - #&#39;,
+ &#39;General - 1/3&#39;,
+ &#39;General - Age&#39;,
+ &#39;General - Ast&#39;,
+ &#39;General - Att&#39;,
+ &#39;General - Clr&#39;,
+ &#39;General - CrsPA&#39;,
+ &#39;General - Err&#39;,
+ &#39;General - Int&#39;,
+ &#39;General - KP&#39;,
+ &#39;General - Min&#39;,
+ &#39;General - Nation&#39;,
+ &#39;General - PPA&#39;,
+ &#39;General - Player&#39;,
+ &#39;General - Pos&#39;,
+ &#39;General - Prog&#39;,
+ &#39;General - Tkl+Int&#39;,
+ &#39;General - xA&#39;,
+ &#39;Height - Ground&#39;,
+ &#39;Height - High&#39;,
+ &#39;Height - Low&#39;,
+ &#39;Long - Att&#39;,
+ &#39;Long - Cmp&#39;,
+ &#39;Long - Cmp%&#39;,
+ &#39;Medium - Att&#39;,
+ &#39;Medium - Cmp&#39;,
+ &#39;Medium - Cmp%&#39;,
+ &#39;Outcomes - Blocks&#39;,
+ &#39;Outcomes - Cmp&#39;,
+ &#39;Outcomes - Int&#39;,
+ &#39;Outcomes - Off&#39;,
+ &#39;Outcomes - Out&#39;,
+ &#39;Pass Types - CK&#39;,
+ &#39;Pass Types - Crs&#39;,
+ &#39;Pass Types - Dead&#39;,
+ &#39;Pass Types - FK&#39;,
+ &#39;Pass Types - Live&#39;,
+ &#39;Pass Types - Press&#39;,
+ &#39;Pass Types - Sw&#39;,
+ &#39;Pass Types - TB&#39;,
+ &#39;Passes - Att&#39;,
+ &#39;Passes - Cmp&#39;,
+ &#39;Passes - Cmp%&#39;,
+ &#39;Passes - Prog&#39;,
+ &#39;Performance - 2CrdY&#39;,
+ &#39;Performance - Ast&#39;,
+ &#39;Performance - Blocks&#39;,
+ &#39;Performance - CrdR&#39;,
+ &#39;Performance - CrdY&#39;,
+ &#39;Performance - Crs&#39;,
+ &#39;Performance - Fld&#39;,
+ &#39;Performance - Fls&#39;,
+ &#39;Performance - Gls&#39;,
+ &#39;Performance - Int&#39;,
+ &#39;Performance - OG&#39;,
+ &#39;Performance - Off&#39;,
+ &#39;Performance - PK&#39;,
+ &#39;Performance - PKatt&#39;,
+ &#39;Performance - PKcon&#39;,
+ &#39;Performance - PKwon&#39;,
+ &#39;Performance - Press&#39;,
+ &#39;Performance - Recov&#39;,
+ &#39;Performance - Sh&#39;,
+ &#39;Performance - SoT&#39;,
+ &#39;Performance - Tkl&#39;,
+ &#39;Performance - TklW&#39;,
+ &#39;Performance - Touches&#39;,
+ &#39;Pressures - %&#39;,
+ &#39;Pressures - Att 3rd&#39;,
+ &#39;Pressures - Def 3rd&#39;,
+ &#39;Pressures - Mid 3rd&#39;,
+ &#39;Pressures - Press&#39;,
+ &#39;Pressures - Succ&#39;,
+ &#39;Receiving - Rec&#39;,
+ &#39;Receiving - Rec%&#39;,
+ &#39;Receiving - Targ&#39;,
+ &#39;SCA - GCA&#39;,
+ &#39;SCA - SCA&#39;,
+ &#39;Short - Att&#39;,
+ &#39;Short - Cmp&#39;,
+ &#39;Short - Cmp%&#39;,
+ &#39;Tackles - Att 3rd&#39;,
+ &#39;Tackles - Def 3rd&#39;,
+ &#39;Tackles - Mid 3rd&#39;,
+ &#39;Tackles - Tkl&#39;,
+ &#39;Tackles - TklW&#39;,
+ &#39;Total - Att&#39;,
+ &#39;Total - Cmp&#39;,
+ &#39;Total - Cmp%&#39;,
+ &#39;Total - PrgDist&#39;,
+ &#39;Total - TotDist&#39;,
+ &#39;Touches - Att 3rd&#39;,
+ &#39;Touches - Att Pen&#39;,
+ &#39;Touches - Def 3rd&#39;,
+ &#39;Touches - Def Pen&#39;,
+ &#39;Touches - Live&#39;,
+ &#39;Touches - Mid 3rd&#39;,
+ &#39;Touches - Touches&#39;,
+ &#39;Vs Dribbles - Att&#39;,
+ &#39;Vs Dribbles - Past&#39;,
+ &#39;Vs Dribbles - Tkl&#39;,
+ &#39;Vs Dribbles - Tkl%&#39;]
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+        </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+            <h3 id="Players-Shots-stats">Players Shots stats<a class="anchor-link" href="#Players-Shots-stats">&#182;</a></h3><h6 id="Note:-contain-all-kind-of-informations-about-the-player-shotting-stats">Note: contain all kind of informations about the player shotting stats<a class="anchor-link" href="#Note:-contain-all-kind-of-informations-about-the-player-shotting-stats">&#182;</a></h6>
+        </div>
+    </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+        <div class="jp-Cell-inputWrapper">
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+                <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+                    <div class="CodeMirror cm-s-jupyter">
+                        <div class=" highlight hl-ipython3"><pre><span></span><span class="n">json_string_array</span> <span class="o">=</span> <span class="n">match</span><span class="p">[</span><span class="s1">&#39;Dict Tables&#39;</span><span class="p">][</span><span class="s1">&#39;Away Team&#39;</span><span class="p">][</span><span class="s1">&#39;Shots stats&#39;</span><span class="p">]</span>  <span class="c1"># Per Player</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">json_string_array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Get first player</span>
+<span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jp-Cell-outputWrapper">
+
+
+            <div class="jp-OutputArea jp-Cell-outputArea">
+
+                <div class="jp-OutputArea-child">
+
+
+                    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+                    <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[&#39;General - Body Part&#39;,
+ &#39;General - Distance&#39;,
+ &#39;General - Minute&#39;,
+ &#39;General - Notes&#39;,
+ &#39;General - Outcome&#39;,
+ &#39;General - Player&#39;,
+ &#39;General - Squad&#39;,
+ &#39;SCA 1 - Event&#39;,
+ &#39;SCA 1 - Player&#39;,
+ &#39;SCA 2 - Event&#39;,
+ &#39;SCA 2 - Player&#39;]
+</pre>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
     </div>
-    </div>
-    </article>
 </main>
 <!--Main layout-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML-full,Safe"> </script>
+<!-- MathJax configuration -->
+<script type="text/x-mathjax-config">
+                                    init_mathjax = function() {
+if (window.MathJax) {
+// MathJax loaded
+   MathJax.Hub.Config({
+TeX: {
+equationNumbers: {
+    autoNumber: "AMS",
+    useLabelIds: true
+}
+},
+tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: true,
+    processEnvironments: true
+},
+displayAlign: 'center',
+CommonHTML: {
+linebreaks: {
+    automatic: true
+}
+},
+"HTML-CSS": {
+linebreaks: {
+    automatic: true
+}
+}
+});
+
+MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+}
+}
+init_mathjax();
+</script>
+

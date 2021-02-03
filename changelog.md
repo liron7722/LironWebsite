@@ -15,6 +15,9 @@
 
 
 ### Updates:  
+#### update 8#:
+    - added new soccer-api documention
+
 #### update 7#:
     - changed file structure in templates folder
     - split css file
