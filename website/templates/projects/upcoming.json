@@ -1,17 +1,13 @@
 [
-  {
-    "img": "../media/ml.png",
-    "name": "ML Predicting Sports Result",
-    "description": "Creating variety of Machine Learning algorithms to predict all kind of\nresults in major sports like football, basketball, soccer and more"
-  },
-  {
-    "img": "../media/webMobileApp.webp",
-    "name": "Website and Mobile App for ML project",
-    "description": "I always loved to share my knowledge and information with others.\nSo I want to make sure everyone can see the results of my projects."
-  },
+
   {
     "img": "../media/flutterDart.png",
     "name": "Building Flutter\\Dart App for random company",
     "description": "There are a lot of companies out there without website or app.\nLet's make them a good one."
+  },
+  {
+    "img": "../media/recipe.png",
+    "name": "Recipes App",
+    "description": "All platform app that will take your cocking to the next level"
   }
 ]

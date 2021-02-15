@@ -1,5 +1,12 @@
 [
   {
+    "img": "../media/ai.jpeg",
+    "title": "Sports events Prediction Website",
+    "description": "Using variety of Machine Learning algorithms to predict all kind of\nevents in major sports like football, basketball, soccer and more",
+    "link":"https://github.com/liron7722/SportPredictions",
+    "url": "https://sports-predictions.club/"
+  },
+  {
     "img": "../media/soccer-api.jpg",
     "title": "Soccer Data API",
     "description": "This is an API contain all kind of data on many leagues, cups and seasons around the world.",
