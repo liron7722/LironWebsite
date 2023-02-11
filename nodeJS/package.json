@@ -11,7 +11,7 @@
     "http": "0.0.1-security",
     "nodemailer": "^6.4.11",
     "path": "^0.12.7",
-    "public-ip": "^4.0.2"
+    "public-ip": "^6.0.1"
   },
   "devDependencies": {},
   "scripts": {
